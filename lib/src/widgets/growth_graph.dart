@@ -10,6 +10,9 @@ class GrowthGraph extends StatefulWidget {
   final TextStyle? primaryXAxisStyles;
   final TextStyle? primaryYAxisStyles;
   final TextStyle? labelStyles;
+  final TextStyle? xlabelStyles;
+  final TextStyle? ylabelStyles;
+  final bool? convertToK;
   const GrowthGraph(
       {super.key,
       required this.growthData,
@@ -17,7 +20,10 @@ class GrowthGraph extends StatefulWidget {
       this.chartTitleStyles,
       this.primaryXAxisStyles,
       this.primaryYAxisStyles,
-      this.labelStyles});
+      this.labelStyles,
+      this.xlabelStyles,
+      this.ylabelStyles,
+      this.convertToK = false});
 
   @override
   State<GrowthGraph> createState() => _GrowthGraphState();
@@ -43,8 +49,11 @@ class _GrowthGraphState extends State<GrowthGraph> {
                     textSize: TextSize.SMALL, textWeight: TextWeight.MEDIUM),
           ),
           axisLabelFormatter: (AxisLabelRenderDetails details) {
-            return ChartAxisLabel(details.text,
-                Styles.customStyle(textWeight: TextWeight.MEDIUM));
+            return ChartAxisLabel(
+              details.text,
+              widget.xlabelStyles ??
+                  Styles.customStyle(textWeight: TextWeight.MEDIUM),
+            );
           },
         ),
         primaryYAxis: NumericAxis(
@@ -60,8 +69,11 @@ class _GrowthGraphState extends State<GrowthGraph> {
             final value = details.value;
             if (value >= 1000) {
               return ChartAxisLabel(
-                '${(value / 1000).toStringAsFixed(0)}k',
-                Styles.customStyle(textWeight: TextWeight.MEDIUM),
+                widget.convertToK == true
+                    ? '${(value / 1000).toStringAsFixed(0)}k'
+                    : value.toStringAsFixed(1),
+                widget.ylabelStyles ??
+                    Styles.customStyle(textWeight: TextWeight.MEDIUM),
               );
             }
             return ChartAxisLabel(value.toString(),
