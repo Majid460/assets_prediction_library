@@ -1,3 +1,4 @@
+import 'package:assets_prediction_library/src/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../data/growth_result.dart';
@@ -5,9 +6,18 @@ import '../data/growth_result.dart';
 class GrowthGraph extends StatefulWidget {
   final List<GrowthResult> growthData;
   final bool inMonths;
-
+  final TextStyle? chartTitleStyles;
+  final TextStyle? primaryXAxisStyles;
+  final TextStyle? primaryYAxisStyles;
+  final TextStyle? labelStyles;
   const GrowthGraph(
-      {super.key, required this.growthData, this.inMonths = false});
+      {super.key,
+      required this.growthData,
+      this.inMonths = false,
+      this.chartTitleStyles,
+      this.primaryXAxisStyles,
+      this.primaryYAxisStyles,
+      this.labelStyles});
 
   @override
   State<GrowthGraph> createState() => _GrowthGraphState();
@@ -18,12 +28,30 @@ class _GrowthGraphState extends State<GrowthGraph> {
   Widget build(BuildContext context) {
     return SfCartesianChart(
         title: ChartTitle(
-            text: 'Asset Growth (${widget.inMonths ? "Months" : "Years"})'),
+            text: 'Asset Growth (${widget.inMonths ? "Months" : "Years"})',
+            textStyle: widget.chartTitleStyles ??
+                Styles.customStyle(
+                    textSize: TextSize.SEMI_LARGE,
+                    textWeight: TextWeight.MEDIUM)),
         primaryXAxis: NumericAxis(
-          title: AxisTitle(text: widget.inMonths ? 'Months' : 'Years'),
+          majorGridLines: const MajorGridLines(width: 1, color: Colors.black12),
+          minorGridLines: const MinorGridLines(width: 1, color: Colors.black12),
+          title: AxisTitle(
+            text: widget.inMonths ? 'Months' : 'Years',
+            textStyle: widget.primaryXAxisStyles ??
+                Styles.customStyle(
+                    textSize: TextSize.SMALL, textWeight: TextWeight.MEDIUM),
+          ),
         ),
-        primaryYAxis: const NumericAxis(
-          title: AxisTitle(text: 'Balance'),
+        primaryYAxis: NumericAxis(
+          majorGridLines: const MajorGridLines(width: 1, color: Colors.black12),
+          minorGridLines: const MinorGridLines(width: 1, color: Colors.black12),
+          title: AxisTitle(
+            text: 'Balance',
+            textStyle: widget.primaryYAxisStyles ??
+                Styles.customStyle(
+                    textSize: TextSize.SMALL, textWeight: TextWeight.MEDIUM),
+          ),
         ),
         series: <LineSeries>[
           LineSeries<GrowthResult, int>(
@@ -31,7 +59,12 @@ class _GrowthGraphState extends State<GrowthGraph> {
             xValueMapper: (data, _) => data.period,
             yValueMapper: (data, _) => data.balance,
             name: 'Balance',
-            dataLabelSettings: const DataLabelSettings(isVisible: true),
+            dataLabelSettings: DataLabelSettings(
+                isVisible: true,
+                textStyle: widget.labelStyles ??
+                    Styles.customStyle(
+                        textSize: TextSize.SMALL,
+                        textWeight: TextWeight.MEDIUM)),
             color: Colors.green[600],
           ),
         ]);

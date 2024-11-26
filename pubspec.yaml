@@ -1,6 +1,6 @@
 name: assets_prediction_library
-description: "A new Flutter package project."
-version: 0.0.1
+description: "A assets prediction library."
+version: 0.0.2
 homepage: https://github.com/Majid460/assets_prediction_library
 
 environment:
