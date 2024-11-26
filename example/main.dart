@@ -1,5 +1,5 @@
+import 'package:assets_prediction_library/prediction_library.dart';
 import 'package:flutter/material.dart';
-import 'package:prediction_library/prediction_library.dart';
 
 void main() {
   runApp(const PredictionExampleApp());

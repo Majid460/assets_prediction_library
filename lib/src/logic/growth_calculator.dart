@@ -1,4 +1,4 @@
-import 'package:prediction_library/src/data/growth_result.dart';
+import 'package:assets_prediction_library/prediction_library.dart';
 
 class GrowthCalculator {
   static List<GrowthResult> calculateGrowth({

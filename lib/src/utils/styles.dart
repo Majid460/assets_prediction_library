@@ -1,8 +1,8 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
+import 'package:assets_prediction_library/src/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:prediction_library/src/utils/dimensions.dart';
 
 enum TextWeight { LIGHT, NORMAL, MEDIUM, BOLD, SEMI_BOLD }
 
