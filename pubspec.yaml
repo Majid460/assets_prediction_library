@@ -1,6 +1,6 @@
 name: assets_prediction_library
 description: "A assets prediction library."
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/Majid460/assets_prediction_library
 
 environment:
