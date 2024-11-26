@@ -42,6 +42,10 @@ class _GrowthGraphState extends State<GrowthGraph> {
                 Styles.customStyle(
                     textSize: TextSize.SMALL, textWeight: TextWeight.MEDIUM),
           ),
+          axisLabelFormatter: (AxisLabelRenderDetails details) {
+            return ChartAxisLabel(details.text,
+                Styles.customStyle(textWeight: TextWeight.MEDIUM));
+          },
         ),
         primaryYAxis: NumericAxis(
           majorGridLines: const MajorGridLines(width: 1, color: Colors.black12),
@@ -52,6 +56,17 @@ class _GrowthGraphState extends State<GrowthGraph> {
                 Styles.customStyle(
                     textSize: TextSize.SMALL, textWeight: TextWeight.MEDIUM),
           ),
+          axisLabelFormatter: (AxisLabelRenderDetails details) {
+            final value = details.value;
+            if (value >= 1000) {
+              return ChartAxisLabel(
+                '${(value / 1000).toStringAsFixed(0)}k',
+                Styles.customStyle(textWeight: TextWeight.MEDIUM),
+              );
+            }
+            return ChartAxisLabel(value.toString(),
+                Styles.customStyle(textWeight: TextWeight.MEDIUM));
+          },
         ),
         series: <LineSeries>[
           LineSeries<GrowthResult, int>(
