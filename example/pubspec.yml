@@ -1,0 +1,18 @@
+name: asset_growth_predictor_example
+description: Example application for asset_growth_predictor
+publish_to: "none" # Ensures this example app is not published
+
+environment:
+  sdk: ^3.5.3
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  asset_growth_predictor:
+    path: ../
+  syncfusion_flutter_charts: ^27.1.58
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
