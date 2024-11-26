@@ -1,4 +1,4 @@
-import 'package:assets_prediction_library/prediction_library.dart';
+import 'package:assets_prediction_library/assets_prediction_library.dart';
 import 'package:flutter/material.dart';
 
 void main() {

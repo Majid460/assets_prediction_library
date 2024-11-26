@@ -1,3 +1,3 @@
-library prediction_library;
+library assets_prediction_library;
 
 export 'src/prediction_lib.dart';
